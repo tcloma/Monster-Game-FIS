@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>My Website</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="index.js"></script>
+  </head>
+  <body>
+    <main>
+        <h1>Monster Test</h1>
+        <form id="input-fields">
+            <input type="text" id="pColor-input" placeholder="Primary Color">
+            <input type="text" id="sColor-input" placeholder="Secondary Color">
+            <select name="render-type" id="fill-type">
+              <option value="0"> Solid </option>
+              <option value="1"> Vertical Split </option>
+              <option value="2"> Horizon Split </option>
+              <option value="4"> Scattered </option>
+            </select>
+            <input type="submit" id="generate-monster-button" value="Generate">
+            <input type="submit" id="random-monster" value="Random">
+        </form>
+<br>
+        <div class="canvas">
+            <!-- JSON PixelDiv Monster -->
+        </div>
+    </main>
+  </body>
+</html>

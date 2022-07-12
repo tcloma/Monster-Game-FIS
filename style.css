@@ -1,0 +1,39 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #bed8d4;
+}
+
+h1{
+    padding-left: 150px;
+}
+
+table, td{
+    border: 1px solid;
+}
+
+td{
+    padding: 20px;
+}
+
+.canvas {
+    width: 600px;
+    height: 600px;
+}
+
+.pixel {
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+input{
+    padding: 10px;
+}
+
+button{
+    padding: 10px;
+}
+
+select{
+    padding: 10px;
+}
