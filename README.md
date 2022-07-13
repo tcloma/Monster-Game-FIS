@@ -22,7 +22,6 @@ Design and styling: (try for pixel art)
 - Line by line fade on death
 - Some sort of destroy animation for side mosnter
 
-
 User Experience:
 
 - Guide to color picking at the start
