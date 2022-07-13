@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>My Website</title>
-    <link rel="stylesheet" href="./style.css">
-    <script defer src="index.js"></script>
-  </head>
-  <body>
-    <main>
-        <h1 id="mons-name">Monster Creation</h1>
-        <form id="input-fields">
-            <input type="text" id="pColor-input" placeholder="Hexcode Primary Color">
-            <input type="text" id="sColor-input" placeholder="Hexcode Secondary Color">
-            <select name="render-type" id="fill-type">
-              <option value="0"> Solid </option>
-              <option value="1"> Vertical Split </option>
-              <option value="2"> Horizon Split </option>
-              <option value="4"> Scattered </option>
-            </select>
-            <input type="submit" id="generate-monster-button" value="Summon">
-            <input type="submit" id="random-monster" value="Random">
-            <input type="submit" id="confirm-monster" value="Make Pact">
-        </form>
-<br>
-        <div class="canvas">
-            <!-- JSON PixelDiv Monster -->
-        </div>
-        <div class="bottom-ui">
-          <!-- Gameplay bottom UI -->
-        </div>
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Website</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="index.js"></script>
+</head>
+
+<body>
+  <main>
+    <div id="header">
+      <h1 id="mons-name">Monster Creation</h1>
+    </div>
+    <form id="input-fields">
+      <input type="text" id="pColor-input" placeholder="Hexcode Primary Color">
+      <input type="text" id="sColor-input" placeholder="Hexcode Secondary Color">
+      <select name="render-type" id="fill-type">
+        <option value="0"> Solid </option>
+        <option value="1"> Vertical Split </option>
+        <option value="2"> Horizon Split </option>
+        <option value="4"> Scattered </option>
+      </select>
+    </form>
+    <div id="buttons">
+      <input type="submit" id="generate-monster-button" value="Summon">
+      <input type="submit" id="random-monster" value="Random">
+      <input type="submit" id="confirm-monster" value="Make Pact">
+    </div>
+    <div id="gameContent">
+      <div class="left-field">
+        <!-- Monster pop up field for Gameplay -->
+      </div>
+      <div class="canvas">
+        <!-- JSON PixelDiv Monster -->
+      </div>
+      <div class="right-field">
+        <!-- Monster pop up field for Gameplay -->
+      </div>
+    </div>
+    <div class="bottom-ui">
+      <!-- Gameplay bottom UI -->
+    </div>
+  </main>
+</body>
+
 </html>

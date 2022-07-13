@@ -3,18 +3,6 @@ body{
     background-color: #bed8d4;
 }
 
-h1{
-    padding-left: 150px;
-}
-
-table, td{
-    border: 1px solid;
-}
-
-td{
-    padding: 20px;
-}
-
 .canvas {
     width: 600px;
     height: 600px;
@@ -36,4 +24,53 @@ button{
 
 select{
     padding: 10px;
+}
+
+#progress-bar{
+    width: 300px;
+    height: 50px;
+    /* margin-top: 50px; */
+    background-color: beige;
+    position: relative;
+}
+
+#progress-inner{
+    background: green;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.progress-box{
+    background: red;
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+
+#header{
+    display: flex;
+    justify-content: center;
+}
+
+#input-fields{
+    display: flex;
+    justify-content: center;
+    /* width: 600px */
+}
+
+#buttons{
+    display: flex;
+    justify-content: center;
+}
+
+#gameContent{
+    display: flex;
+    justify-content: center;
+}
+
+.bottom-ui{
+    display: flex;
+    justify-content: center;
 }

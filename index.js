@@ -1,5 +1,7 @@
 const pixelCanvas = document.querySelector('.canvas')
 const inputFields = document.querySelector('#input-fields')
+const topButtons = document.querySelector('#buttons')
+const bottomUI = document.querySelector('.bottom-ui')
 const pColorInput = document.querySelector('#pColor-input')
 const sColorInput = document.querySelector('#sColor-input')
 const fillDropDown = document.querySelector('#fill-type')
@@ -40,8 +42,8 @@ let renderPixels = (data) => {
                     pixel.style.backgroundColor = `#${secondaryColor}`
                 }
             }
-            else{
-                if (element === 1){
+            else {
+                if (element === 1) {
                     pixel.style.backgroundColor = colorGrab[1]
                 }
             }
@@ -82,12 +84,12 @@ randomButton.addEventListener('click', () => {
 
 confirmButton.addEventListener('click', () => {
     let decision = confirm('Do you want to summon this monster?')
-    
-    if (decision === true){
+
+    if (decision === true) {
         console.log('Okay then!')
         monsterName = prompt("Enter your monster's name!")
-        inputFields.remove()
         monsNameContainer.textContent = monsterName
+        renderPart2()
         // Call new scene
     }
     else {
@@ -96,3 +98,54 @@ confirmButton.addEventListener('click', () => {
 
     event.preventDefault()
 })
+
+let baseTime = 10
+
+const renderPart2 = () => {
+    inputFields.remove()
+    topButtons.remove()
+
+    let outer = document.createElement('div')
+    let inner = document.createElement('div')
+    let TestBtn = document.createElement('button')
+    let TestBtn2 = document.createElement('button')
+    let pHolder = document.createElement('div')
+
+    pHolder.className = "progress-box"
+    TestBtn.textContent = "Timer"
+    TestBtn2.textContent = "Add Time"
+    outer.id = "progress-bar"
+    inner.id = "progress-inner"
+
+    TestBtn.addEventListener('click', () => {
+        let timerDrain = setInterval(() => {
+            baseTime--;
+
+            let progressTrack = (baseTime / 10) * 100;
+
+            if (baseTime > -1) {
+                console.log('works')
+                inner.style.width = progressTrack + "%"
+            }
+            else {
+                clearInterval(timerDrain)
+                console.log('done')
+                killGame()
+            }
+
+        }, 2000)
+    })
+
+    TestBtn2.addEventListener('click', () => {
+        baseTime = baseTime + 3;
+        console.log('working')
+    })
+
+    outer.append(inner)
+    bottomUI.append(pHolder, outer, TestBtn, TestBtn2)
+}
+
+const killGame = () => {
+    bottomUI.remove()
+    monsNameContainer.textContent = "Dead"
+}
