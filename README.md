@@ -5,16 +5,12 @@ Stuff to do:
     - [x] Naming Monster
     - [x] Removing creation screen UI and replacing it with game UI
 
-Game mechanics:
+Game mechanics
     - [x] Monster Name
     - [x] Hunger (SOULS)
-    ~~ - Happiness ~~
- 
     - [x] "Draining" hunger / Happiness using TIMER
     - action to increase time TIMER duration
-        - for Hunger (Feeding monster that pop up)
-        ~~ - for hunger (typing in a food?) ~~
-
+        -Feeding monster that pop up
     - [x] Death sequence when bar is drained
 
 Design and styling: (try for pixel art)
