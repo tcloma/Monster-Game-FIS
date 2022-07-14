@@ -2,13 +2,18 @@ const pixelCanvas = document.querySelector('.canvas')
 const inputFields = document.querySelector('#input-fields')
 const topButtons = document.querySelector('#buttons')
 const bottomUI = document.querySelector('.bottom-ui')
+
 const pColorInput = document.querySelector('#pColor-input')
 const sColorInput = document.querySelector('#sColor-input')
 const fillDropDown = document.querySelector('#fill-type')
+
 const generateButton = document.querySelector('#generate-monster-button')
 const randomButton = document.querySelector('#random-monster')
 const confirmButton = document.querySelector('#confirm-monster')
 const monsNameContainer = document.querySelector('#mons-name')
+
+const leftSidePlay = document.querySelector('.left-field')
+const rightSidePlay = document.querySelector('.right-field')
 
 let primaryColor
 let secondaryColor
@@ -100,6 +105,7 @@ confirmButton.addEventListener('click', () => {
 })
 
 let baseTime = 10
+let size = 250
 
 const renderPart2 = () => {
     inputFields.remove()
@@ -108,41 +114,91 @@ const renderPart2 = () => {
     let outer = document.createElement('div')
     let inner = document.createElement('div')
     let TestBtn = document.createElement('button')
-    let TestBtn2 = document.createElement('button')
-    let pHolder = document.createElement('div')
 
-    pHolder.className = "progress-box"
     TestBtn.textContent = "Timer"
-    TestBtn2.textContent = "Add Time"
     outer.id = "progress-bar"
     inner.id = "progress-inner"
 
     TestBtn.addEventListener('click', () => {
-        let timerDrain = setInterval(() => {
+
+        let cooldown = 3
+        let gamespeed = 2000
+
+        let timerDrain = () => {
             baseTime--;
+            cooldown--;
+
+            if (gamespeed > 1000) {
+                gamespeed = gamespeed - 10
+            }
+
+            console.log(gamespeed)
+            console.log(size)
 
             let progressTrack = (baseTime / 10) * 100;
 
             if (baseTime > -1) {
+                setTimeout(timerDrain, gamespeed)
                 console.log('works')
                 inner.style.width = progressTrack + "%"
             }
             else {
-                clearInterval(timerDrain)
                 console.log('done')
                 killGame()
             }
 
-        }, 2000)
-    })
+            let sideRender = Math.floor(Math.random() * 2)
+            let foodImage = `https://app.pixelencounter.com/api/basic/monsters/random/png?size=${size}`
+            console.log('New monster in:', cooldown)
 
-    TestBtn2.addEventListener('click', () => {
-        baseTime = baseTime + 3;
-        console.log('working')
+            if (sideRender === 0 && cooldown === 0) {
+                let monsterFood = document.createElement('img')
+                monsterFood.src = foodImage
+
+                monsterFood.addEventListener('click', () => {
+                    if (baseTime < 6) {
+                        baseTime = baseTime + 4;
+                    }
+                    else {
+                        baseTime = 11
+                    }
+                    leftSidePlay.innerHTML = ""
+                    size = size - 5
+                    cooldown = 3
+                })
+
+                leftSidePlay.append(monsterFood)
+            }
+            else if (sideRender === 1 && cooldown === 0) {
+                let monsterFood = document.createElement('img')
+                monsterFood.src = foodImage
+
+                monsterFood.addEventListener('click', () => {
+                    if (baseTime < 6) {
+                        baseTime = baseTime + 4;
+                    }
+                    else {
+                        baseTime = 11
+                    }
+                    rightSidePlay.innerHTML = ""
+                    size = size - 5
+                    cooldown = 3
+                })
+
+                rightSidePlay.append(monsterFood)
+            }
+
+            if (cooldown === -1) {
+                leftSidePlay.innerHTML = ""
+                rightSidePlay.innerHTML = ""
+                cooldown = 3
+            }
+        }
+        setTimeout(timerDrain, gamespeed)
     })
 
     outer.append(inner)
-    bottomUI.append(pHolder, outer, TestBtn, TestBtn2)
+    bottomUI.append(outer, TestBtn)
 }
 
 const killGame = () => {
