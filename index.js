@@ -18,13 +18,6 @@ const monsNameContainer = document.querySelector('#mons-name')
 const leftSidePlay = document.querySelector('.left-field')
 const rightSidePlay = document.querySelector('.right-field')
 
-const pixelgroup1 = document.querySelector('#pixelgroup1')
-const pixelgroup2 = document.querySelector('#pixelgroup2')
-const pixelgroup3 = document.querySelector('#pixelgroup3')
-const pixelgroup4 = document.querySelector('#pixelgroup4')
-const pixelgroup5 = document.querySelector('#pixelgroup5')
-const pixelgroup6 = document.querySelector('#pixelgroup6')
-
 let primaryColor
 let secondaryColor
 let filltype
@@ -37,8 +30,8 @@ let renderPixels = (data) => {
     let localPattern = [];
     let colorValue = data.pattern;
     let colorGrab = data.colors;
-    let rowcounter = 0;
-    let rowgrouper = 1;
+    // let rowcounter = 0;
+    // let rowgrouper = 1;
     // let boxCount = 1;
 
     colorValue.forEach((element, i) => {
@@ -275,15 +268,11 @@ const renderPart2 = () => {
     bottomUI.append(outer)
 }
 
-const deathAnimation = () => {
+const killGame = () => {
+    bottomUI.remove()
     pixelCanvas.style.animationPlayState = "paused"
     gameContent.style.animationPlayState = "running"
     gameContent.addEventListener('animationend', endTextRender)
-}
-
-const killGame = () => {
-    bottomUI.remove()
-    deathAnimation()
 }
 
 const endTextRender = () => {
