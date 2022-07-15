@@ -10,24 +10,26 @@
 
 <body>
   <main>
-    <div id="header">
-      <h1 id="mons-name">Monster Creation</h1>
+    <div id="header" class="seventhin">
+      <h1 id="mons-name">Monster Maker</h1>
+    </div>
+    <center>
+    <div id="buttons">
+      <input type="submit" id="generate-monster-button" class="firstin" value="Custom">
+      <input type="submit" id="random-monster" class="secondin" value="Random">
     </div>
     <form id="input-fields">
-      <input type="text" id="pColor-input" placeholder="Hexcode Primary Color">
-      <input type="text" id="sColor-input" placeholder="Hexcode Secondary Color">
-      <select name="render-type" id="fill-type">
+      <input type="text" id="pColor-input" class="thirdin" placeholder="Hexcode Primary Color">
+      <input type="text" id="sColor-input" class="fourthin" placeholder="Hexcode Secondary Color">
+      <select name="render-type" id="fill-type" class="fifthin">
+        <option value="none" selected disabled hidden>Type</option>
         <option value="0"> Solid </option>
         <option value="1"> Vertical Split </option>
         <option value="2"> Horizon Split </option>
         <option value="4"> Scattered </option>
       </select>
     </form>
-    <div id="buttons">
-      <input type="submit" id="generate-monster-button" value="Summon">
-      <input type="submit" id="random-monster" value="Random">
-      <input type="submit" id="confirm-monster" value="Make Pact">
-    </div>
+    </center>
     <div id="gameContent">
       <div class="left-field">
         <!-- Monster pop up field for Gameplay -->
@@ -41,6 +43,7 @@
     </div>
     <div class="bottom-ui">
       <!-- Gameplay bottom UI -->
+      <input type="submit" id="confirm-monster" class="sixthin" value="Confirm">
     </div>
   </main>
 </body>

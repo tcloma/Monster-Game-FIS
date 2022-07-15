@@ -1,109 +1,214 @@
-body{
+body {
     font-family: 'Courier New', Courier, monospace;
-    background-color: #bed8d4;
+    background-color: #172121;
 }
 
-.canvas{
-    width: 600px;
-    height: 600px;
+#header {
+    height: 30%;
+    font-size: 23px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    animation-name: pullDown;
+    -webkit-animation-name: pullDown;
+
+    animation-duration: 1.1s;
+    -webkit-animation-duration: 1.1s;
+
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+
+    transform-origin: 50% 0%;
+    -ms-transform-origin: 50% 0%;
+    -webkit-transform-origin: 50% 0%;
+
+    animation-fill-mode: forwards;
+    visibility: hidden;
+}
+
+#buttons,
+#input-fields {
+    display: flex;
+    width: 35%;
+    justify-content: space-evenly;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.tutorialbtn {
+    margin-bottom: 2px;
+}
+
+#gameContent {
+    height: 700px;
+    margin-top: 130px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    animation: shakeDisappear 2s;
+    animation-play-state: paused;
+}
+
+.canvas {
+    width: 500px;
+    height: 500px;
     flex-shrink: 0;
+    animation-name: floating;
+    -webkit-animation-name: floating;
+
+    animation-duration: 1.5s;
+    -webkit-animation-duration: 1.5s;
+
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
 }
 
-.canvas:hover{
+.pixel {
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+
+.left-field,
+.right-field {
+    height: 500px;
+    width: 34%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-ui {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 50px;
+    background-color: #8d8d92;
+    position: relative;
+    border-radius: 10px;
+}
+
+#progress-inner {
+    background: #931f1d;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+input[type="submit"],
+button {
+    background-color: #931f1d;
+    color: white;
+    font-size: 20px;
+    padding: 15px 12px 15px 12px;
+    width: 40%;
+    border: none;
+    flex-grow: 1;
+    border-radius: 10px;
+    animation-name: pullUp;
+    -webkit-animation-name: pullUp;
+
+    animation-duration: 1.1s;
+    -webkit-animation-duration: 1.1s;
+
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+
+    transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    -webkit-transform-origin: 50% 100%;
+
+    animation-fill-mode: forwards;
+    visibility: hidden;
+}
+
+input[type="text"],
+select {
+    font-size: 20px;
+    padding: 15px 12px 15px 12px;
+    border: none;
+    flex-grow: 1;
+    border-radius: 10px;
+    animation-name: pullDown;
+    -webkit-animation-name: pullDown;
+
+    animation-duration: 1.1s;
+    -webkit-animation-duration: 1.1s;
+
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+
+    transform-origin: 50% 0%;
+    -ms-transform-origin: 50% 0%;
+    -webkit-transform-origin: 50% 0%;
+
+    animation-fill-mode: forwards;
+    visibility: hidden;
+}
+
+h4 {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    color: #931f1d;
+    margin-bottom: 46px;
+}
+
+#end {
+    font-size: 200px;
+    color: #931f1d;
+    text-shadow: 0 0 7px black;
+    animation-name: fadeIn;
+    -webkit-animation-name: fadeIn;
+
+    animation-duration: 1.5s;
+    -webkit-animation-duration: 1.5s;
+
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+
+    visibility: visible !important;
+
+    animation-fill-mode: forwards;
+}
+
+.food {
     animation: shake 0.5s;
     animation-iteration-count: infinite;
 }
 
-.pixel {
-    width: 50px;
-    height: 50px;
-    float: left;
+.secondin {
+    animation-delay: .2s;
 }
 
-.left-field{
-    /* background: #c14953; */
-    height: 600px;
-    width: 34%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.thirdin {
+    animation-delay: .4s;
 }
 
-.right-field{
-    /* background: #848fA5; */
-    height: 600px;
-    width: 34%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.fourthin {
+    animation-delay: .6s;
 }
 
-input{
-    padding: 10px;
+.fifthin {
+    animation-delay: .8s;
 }
 
-button{
-    padding: 10px;
+.sixthin {
+    animation-delay: 1s;
 }
 
-select{
-    padding: 10px;
-}
-
-#progress-bar{
-    width: 300px;
-    height: 50px;
-    /* margin-top: 50px; */
-    background-color: beige;
-    position: relative;
-}
-
-#progress-inner{
-    background: green;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.progress-box{
-    background: red;
-    width: 50px;
-    height: 50px;
-    position: relative;
-}
-
-
-#header{
-    display: flex;
-    justify-content: center;
-}
-
-#input-fields{
-    display: flex;
-    justify-content: center;
-    /* width: 600px */
-}
-
-#buttons{
-    display: flex;
-    justify-content: center;
-}
-
-#gameContent{
-    margin-top: 50px;
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.bottom-ui{
-    display: flex;
-    justify-content: center;
+.seventhin {
+    animation-delay: 2s;
 }
 
 @keyframes shake {
     0% {
-        transform: translate(1px, 1px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg);
     }
 
     10% {
@@ -144,5 +249,143 @@ select{
 
     100% {
         transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0%);
+    }
+
+    50% {
+        transform: translateY(4%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes pullUp {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.1);
+    }
+
+    40% {
+        transform: scaleY(1.02);
+    }
+
+    60% {
+        transform: scaleY(0.98);
+    }
+
+    80% {
+        transform: scaleY(1.01);
+    }
+
+    100% {
+        transform: scaleY(0.98);
+    }
+
+    80% {
+        transform: scaleY(1.01);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        visibility: visible;
+    }
+}
+
+@keyframes pullDown {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.1);
+    }
+
+    40% {
+        transform: scaleY(1.02);
+    }
+
+    60% {
+        transform: scaleY(0.98);
+    }
+
+    80% {
+        transform: scaleY(1.01);
+    }
+
+    100% {
+        transform: scaleY(0.98);
+    }
+
+    80% {
+        transform: scaleY(1.01);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        visibility: visible;
+    }
+}
+
+@keyframes shakeDisappear {
+    0% {
+        opacity: 1;
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }

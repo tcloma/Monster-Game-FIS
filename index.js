@@ -1,7 +1,10 @@
 const pixelCanvas = document.querySelector('.canvas')
+const indivPixels = document.querySelectorAll('.pixel')
 const inputFields = document.querySelector('#input-fields')
 const topButtons = document.querySelector('#buttons')
 const bottomUI = document.querySelector('.bottom-ui')
+const header = document.querySelector('#header')
+const gameContent = document.querySelector('#gameContent')
 
 const pColorInput = document.querySelector('#pColor-input')
 const sColorInput = document.querySelector('#sColor-input')
@@ -15,6 +18,13 @@ const monsNameContainer = document.querySelector('#mons-name')
 const leftSidePlay = document.querySelector('.left-field')
 const rightSidePlay = document.querySelector('.right-field')
 
+const pixelgroup1 = document.querySelector('#pixelgroup1')
+const pixelgroup2 = document.querySelector('#pixelgroup2')
+const pixelgroup3 = document.querySelector('#pixelgroup3')
+const pixelgroup4 = document.querySelector('#pixelgroup4')
+const pixelgroup5 = document.querySelector('#pixelgroup5')
+const pixelgroup6 = document.querySelector('#pixelgroup6')
+
 let primaryColor
 let secondaryColor
 let filltype
@@ -27,6 +37,8 @@ let renderPixels = (data) => {
     let localPattern = [];
     let colorValue = data.pattern;
     let colorGrab = data.colors;
+    let rowcounter = 0;
+    let rowgrouper = 1;
     // let boxCount = 1;
 
     colorValue.forEach((element, i) => {
@@ -37,7 +49,19 @@ let renderPixels = (data) => {
             // console.log(element)
             let pixel = document.createElement('div')
             pixel.className = "pixel"
+            // if (rowcounter !== 23){
+            //     pixel.id = `pixelgroup${rowgrouper}`
+            //     rowcounter++;
+            //     // console.log(rowcounter)
+            //     // console.log(rowgrouper)
+            // }
+            // else {
+            //     pixel.id = `pixelgroup${rowgrouper}`
+            //     rowcounter = 0;
+            //     rowgrouper++;
+            // }
             // pixel.innerText = boxCount
+            // pixel.style.color = "white"
             // boxCount++;
             if (monsterUrl !== 'https://app.pixelencounter.com/api/basic/monsters/random/json') {
                 if (element === 1) {
@@ -59,9 +83,14 @@ let renderPixels = (data) => {
 }
 
 const fetchData = async () => {
-    let req = await fetch(monsterUrl)
-    let res = await req.json()
-    renderPixels(res)
+    try {
+        let req = await fetch(monsterUrl)
+        let res = await req.json()
+        renderPixels(res)
+    }
+    catch (error) {
+        alert('Entered an invalid Color Code, please try again!')
+    }
 }
 
 const fetchRandom = async () => {
@@ -71,14 +100,20 @@ const fetchRandom = async () => {
 }
 
 generateButton.addEventListener('click', () => {
-    primaryColor = pColorInput.value
-    secondaryColor = sColorInput.value
-    filltype = fillDropDown.value
-    monsterUrl = `https://app.pixelencounter.com/api/basic/svgmonsters/json?primaryColor=%23${primaryColor}&secondarycColor=%23${secondaryColor}&fillType=${filltype}`
 
-    // console.log(primaryColor, secondaryColor, filltype, monsterUrl)
-    event.preventDefault()
-    fetchData()
+    if (primaryColor !== "" && fillDropDown.value !== "none") {
+        primaryColor = pColorInput.value
+        secondaryColor = sColorInput.value
+        filltype = fillDropDown.value
+        monsterUrl = `https://app.pixelencounter.com/api/basic/svgmonsters/json?primaryColor=%23${primaryColor}&secondarycColor=%23${secondaryColor}&fillType=${filltype}`
+
+        // console.log(primaryColor, secondaryColor, filltype, monsterUrl)
+        event.preventDefault()
+        fetchData()
+    }
+    else {
+        alert('Please enter colors and render type before creating!')
+    }
 })
 
 randomButton.addEventListener('click', () => {
@@ -91,14 +126,19 @@ confirmButton.addEventListener('click', () => {
     let decision = confirm('Do you want to summon this monster?')
 
     if (decision === true) {
-        console.log('Okay then!')
+        // console.log('Okay then!')
         monsterName = prompt("Enter your monster's name!")
-        monsNameContainer.textContent = monsterName
-        renderPart2()
+        if (monsterName != "") {
+            monsNameContainer.textContent = monsterName
+            renderPart2()
+        }
+        else {
+            alert('Please enter a name for your monster!')
+        }
         // Call new scene
     }
     else {
-        console.log('Take your time!')
+        alert('Please enter a name for your monster!')
     }
 
     event.preventDefault()
@@ -106,44 +146,60 @@ confirmButton.addEventListener('click', () => {
 
 let baseTime = 10
 let size = 250
+let sacrificed = 0;
+
+const emptyDiv = (div) => {
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+}
 
 const renderPart2 = () => {
-    inputFields.remove()
-    topButtons.remove()
+    emptyDiv(inputFields)
+    emptyDiv(topButtons)
+    emptyDiv(bottomUI)
 
+    let monstersFed = document.createElement('h4')
     let outer = document.createElement('div')
     let inner = document.createElement('div')
-    let TestBtn = document.createElement('button')
+    let feedBtn = document.createElement('button')
+    let tutorialBtn = document.createElement('button')
 
-    TestBtn.textContent = "Timer"
+    monstersFed.textContent = "0 monsters eaten"
+    feedBtn.textContent = "Feed your monster!"
+    feedBtn.className = "feedbtn"
+    tutorialBtn.textContent = "How to play?"
+    tutorialBtn.className = "tutorialbtn"
     outer.id = "progress-bar"
     inner.id = "progress-inner"
 
-    TestBtn.addEventListener('click', () => {
-
+    feedBtn.addEventListener('click', () => {
+        feedBtn.remove()
+        tutorialBtn.remove()
+        inputFields.append(monstersFed)
         let cooldown = 3
-        let gamespeed = 2000
+        let gamespeed = 1800
 
         let timerDrain = () => {
             baseTime--;
             cooldown--;
 
             if (gamespeed > 1000) {
-                gamespeed = gamespeed - 10
+                gamespeed = gamespeed - 30
             }
 
-            console.log(gamespeed)
-            console.log(size)
+            console.log('Current gamespeed is: ', gamespeed)
+            console.log('Current mosnter size is: ', size)
 
             let progressTrack = (baseTime / 10) * 100;
 
             if (baseTime > -1) {
                 setTimeout(timerDrain, gamespeed)
-                console.log('works')
+                // console.log('works')
                 inner.style.width = progressTrack + "%"
             }
             else {
-                console.log('done')
+                console.log('Monster Killed')
                 killGame()
             }
 
@@ -154,6 +210,7 @@ const renderPart2 = () => {
             if (sideRender === 0 && cooldown === 0) {
                 let monsterFood = document.createElement('img')
                 monsterFood.src = foodImage
+                monsterFood.className = "food"
 
                 monsterFood.addEventListener('click', () => {
                     if (baseTime < 6) {
@@ -165,6 +222,8 @@ const renderPart2 = () => {
                     leftSidePlay.innerHTML = ""
                     size = size - 5
                     cooldown = 3
+                    sacrificed++
+                    monstersFed.textContent = `${sacrificed} monsters eaten`
                 })
 
                 leftSidePlay.append(monsterFood)
@@ -172,6 +231,7 @@ const renderPart2 = () => {
             else if (sideRender === 1 && cooldown === 0) {
                 let monsterFood = document.createElement('img')
                 monsterFood.src = foodImage
+                monsterFood.className = "food"
 
                 monsterFood.addEventListener('click', () => {
                     if (baseTime < 6) {
@@ -183,6 +243,8 @@ const renderPart2 = () => {
                     rightSidePlay.innerHTML = ""
                     size = size - 5
                     cooldown = 3
+                    sacrificed++
+                    monstersFed.textContent = `${sacrificed} monsters eaten`
                 })
 
                 rightSidePlay.append(monsterFood)
@@ -197,11 +259,44 @@ const renderPart2 = () => {
         setTimeout(timerDrain, gamespeed)
     })
 
+    tutorialBtn.addEventListener('click', () => {
+        alert("The red bar on the bottom indicates your monster's hunger, it will slowly drain as long as the game continues")
+        alert("Random smaller monster will appear on the left and right side of your monster")
+        alert("Click on those monsters to feed them to your monster and replenish the hunger bar")
+        alert("The game will end when your hunger bar reaches is fully depleted")
+        alert("Goodluck! Keep your monster full and happy! (◕‿◕)")
+
+        event.preventDefault()
+    })
+
+    topButtons.append(tutorialBtn)
+    inputFields.append(feedBtn)
     outer.append(inner)
-    bottomUI.append(outer, TestBtn)
+    bottomUI.append(outer)
+}
+
+const deathAnimation = () => {
+    pixelCanvas.style.animationPlayState = "paused"
+    gameContent.style.animationPlayState = "running"
+    gameContent.addEventListener('animationend', endTextRender)
 }
 
 const killGame = () => {
     bottomUI.remove()
-    monsNameContainer.textContent = "Dead"
+    deathAnimation()
+}
+
+const endTextRender = () => {
+
+    pixelCanvas.remove()
+    leftSidePlay.remove()
+    rightSidePlay.remove()
+    gameContent.style.opacity = "1"
+
+    let endtitle = document.createElement('h1')
+    endtitle.id = "end"
+    endtitle.textContent = `${monsterName} died`
+
+    gameContent.append(endtitle)
+    gameContent.removeEventListener('animationend', endTextRender)
 }

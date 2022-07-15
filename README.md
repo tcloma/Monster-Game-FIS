@@ -18,16 +18,16 @@ Game mechanics:
 
 
 Design and styling: (try for pixel art)
-- Basic UI for hunger
-    - Long bar on the bottom
-- Basic bouncing animation for monster
-- Some sort of destroy or shake animation for side mosnter
+- [x] Basic UI for hunger, Long bar on the bottom
+- [x] Some sort of shake animation for side mosnter
+- [x] Constant floating animation for omsnter
 
 User Experience:
 - Guide to color picking at the start
-- Quick tutorial sequence going over what to press and how to play (ask if they want one)
+- [x] Quick tutorial sequence going over how to play
 
 Stretch:
 - [x] game gets faster as it progresses
 - [x] monster get smaller as game progresses
-- Line by line fade on death
+- [x] Fade away death animation
+- [x] Error catching on invalid URL and empty input fields
