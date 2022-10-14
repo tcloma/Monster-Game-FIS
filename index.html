@@ -1,51 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- TO DO:
+
+   - Install dependencies for typescript and Solid JS
+   - refactor HTML and JS into components using JSX
+   - use best practice by doing:
+      - Seperate API file for fetches
+      - Seperate CSS files per component
+      - Seperating repetitive elements into their own reusable components
+   - Implement routing instead of clearing the page each time
+
+   IF
+   - CORS issue persists, look into a solution
+
+ -->
+
 <head>
-  <meta charset="UTF-8">
-  <title>My Website</title>
-  <link rel="stylesheet" href="./style.css">
-  <script defer src="index.js"></script>
+   <meta charset="UTF-8">
+   <title>My Website</title>
+   <link rel="stylesheet" href="./style.css">
+   <script defer src="index.js"></script>
 </head>
 
 <body>
-  <main>
-    <div id="header" class="seventhin">
-      <h1 id="mons-name">Monster Maker</h1>
-    </div>
-    <center>
-      <div id="buttons">
-        <input type="submit" id="generate-monster-button" class="firstin" value="Custom">
-        <input type="submit" id="random-monster" class="secondin" value="Random">
+   <main>
+      <div id="header" class="seventhin">
+         <h1 id="mons-name">Monster Maker</h1>
       </div>
-      <form id="input-fields">
-        <input type="text" id="pColor-input" class="thirdin" placeholder="Hexcode Primary Color">
-        <input type="text" id="sColor-input" class="fourthin" placeholder="Hexcode Secondary Color">
-        <select name="render-type" id="fill-type" class="fifthin">
-          <option value="none" selected disabled hidden>Type</option>
-          <option value="0"> Solid </option>
-          <option value="1"> Vertical Split </option>
-          <option value="2"> Horizon Split </option>
-          <option value="4"> Scattered </option>
-        </select>
-      </form>
-    </center>
-    <div id="gameContent">
-      <div class="left-field">
-        <!-- Monster pop up field for Gameplay -->
+      <center>
+         <div id="buttons">
+            <input type="submit" id="generate-monster-button" class="firstin" value="Custom">
+            <input type="submit" id="random-monster" class="secondin" value="Random">
+         </div>
+         <form id="input-fields">
+            <input type="text" id="pColor-input" class="thirdin" placeholder="Hexcode Primary Color">
+            <input type="text" id="sColor-input" class="fourthin" placeholder="Hexcode Secondary Color">
+            <select name="render-type" id="fill-type" class="fifthin">
+               <option value="none" selected disabled hidden>Type</option>
+               <option value="0"> Solid </option>
+               <option value="1"> Vertical Split </option>
+               <option value="2"> Horizon Split </option>
+               <option value="4"> Scattered </option>
+            </select>
+         </form>
+      </center>
+      <div id="gameContent">
+         <div class="left-field">
+            <!-- Monster pop up field for Gameplay -->
+         </div>
+         <div class="canvas">
+            <!-- JSON PixelDiv Monster -->
+         </div>
+         <div class="right-field">
+            <!-- Monster pop up field for Gameplay -->
+         </div>
       </div>
-      <div class="canvas">
-        <!-- JSON PixelDiv Monster -->
+      <div class="bottom-ui">
+         <!-- Gameplay bottom UI -->
+         <input type="submit" id="confirm-monster" class="sixthin" value="Confirm">
       </div>
-      <div class="right-field">
-        <!-- Monster pop up field for Gameplay -->
-      </div>
-    </div>
-    <div class="bottom-ui">
-      <!-- Gameplay bottom UI -->
-      <input type="submit" id="confirm-monster" class="sixthin" value="Confirm">
-    </div>
-  </main>
+   </main>
 </body>
 
 </html>
