@@ -1,12 +1,6 @@
 <script lang="ts">
    import { onMount } from 'svelte'
-
    export let patternData: Array<Array<number>>
-   export let colorData: string
-
-   onMount(() => {
-      console.log(colorData)
-   })
 </script>
 
 <section>
