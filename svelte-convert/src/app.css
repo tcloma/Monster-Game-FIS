@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.page {
+   @apply flex min-h-screen flex-col items-center justify-center bg-zinc-900 text-white;
+}
+
+.tile {
+   @apply h-2 w-2 lg:h-10 lg:w-10;
+}
