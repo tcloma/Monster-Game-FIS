@@ -1,0 +1,41 @@
+#root {
+	--background: #16161a;
+	--offBackground: #72757e;
+	--heading: #fffffe;
+	--paragraph: #94a1b2;
+	--accent-purple: #7f5af0;
+	--accent-green: #2cb67d;
+	margin: 0 auto;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	place-items: center;
+}
+
+button {
+	font-weight: bold;
+	font-size: medium;
+	background-color: var(--accent-purple);
+	color: var(--heading);
+	padding: 20px 40px;
+	border-radius: 12px;
+	border: none;
+	width: 100%;
+}
+
+button:hover {
+	background-color: var(--offBackground);
+	transition-duration: 300ms;
+}
+
+.row {
+	display: flex;
+}
+
+.cell {
+	height: 2rem;
+	width: 2rem;
+}
