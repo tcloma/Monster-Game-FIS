@@ -1,0 +1,29 @@
+.page {
+	gap: 16px;
+}
+
+.header {
+	text-align: center;
+}
+
+.title {
+	color: var(--heading);
+	font-size: 4rem;
+	width: 100%;
+}
+
+.para {
+	color: var(--text);
+	font-size: 1.1rem;
+}
+
+.spacedRow {
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	width: 50%;
+}
+
+.wHalf {
+	width: 50%;
+}
