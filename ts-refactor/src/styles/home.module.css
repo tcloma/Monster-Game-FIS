@@ -34,8 +34,8 @@
 	width: 50%;
 	height: 50vh;
 	border-radius: 0.5em;
-	background-color: #252339;
-	border: 5px solid #1a1929;
+	background-color: var(--offBg);
+	border: 5px solid var(--offBorder);
 }
 
 .monster {

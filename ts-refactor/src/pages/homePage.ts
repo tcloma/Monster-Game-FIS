@@ -1,7 +1,7 @@
 import { make } from '../utils/helpers'
 import generic from '../styles/generics.module.css'
 import styles from '../styles/home.module.css'
-import { getRandomMonster } from '../api/monsterApi'
+import { getCustomMonster, getRandomMonster } from '../api/monsterApi'
 
 interface IColors {
 	0: string
@@ -20,7 +20,13 @@ async function handleRandomClick() {
 	renderPixels()
 }
 
+async function handleCustomClick() {
+	const data = await getCustomMonster('FFFFFF', '000000', '2')
+	console.log(data)
+}
+
 const pixelCanvas = make('div', styles.canvas)
+
 function renderPixels() {
 	pixelCanvas.innerHTML = ''
 	const monster = make('div', styles.monster)
@@ -52,10 +58,20 @@ const homePage = () => {
 	const randomBtn = make('btn', generic.btn + ' ' + styles.wHalf, 'Random')
 	const customBtn = make('btn', generic.btn + ' ' + styles.wHalf, 'Custom')
 
+	customBtn.addEventListener('click', () => handleCustomClick())
 	randomBtn.addEventListener('click', () => handleRandomClick())
 	generateBtns.append(randomBtn, customBtn)
 
-	page.append(header, generateBtns, pixelCanvas)
+	const optionsInputs = make('div', styles.spacedRow)
+	const primaryColor = make('input', '') as HTMLInputElement
+	const secondaryColor = make('input', '') as HTMLInputElement
+	primaryColor.type = 'color'
+	primaryColor.value = colors === undefined ? '#FFFFFF' : colors[1]
+	secondaryColor.type = 'color'
+	secondaryColor.value = colors === undefined ? '#FFFFFF' : colors[2]
+	optionsInputs.append(primaryColor, secondaryColor)
+
+	page.append(header, generateBtns, optionsInputs, pixelCanvas)
 	return page
 }
 
