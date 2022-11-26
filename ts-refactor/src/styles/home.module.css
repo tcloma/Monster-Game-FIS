@@ -27,3 +27,26 @@
 .wHalf {
 	width: 50%;
 }
+
+.canvas {
+	display: grid;
+	place-items: center;
+	width: 50%;
+	height: 50vh;
+	border-radius: 0.5em;
+	background-color: #252339;
+	border: 5px solid #1a1929;
+}
+
+.monster {
+	filter: drop-shadow(5px 5px 1px #212122);
+}
+
+.row {
+	display: flex;
+}
+
+.pixel {
+	height: 1.5em;
+	width: 1.5em;
+}
