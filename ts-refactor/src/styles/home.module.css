@@ -20,6 +20,7 @@
 .spacedRow {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	gap: 15px;
 	width: 50%;
 }
@@ -39,7 +40,7 @@
 }
 
 .monster {
-	filter: drop-shadow(5px 5px 1px #212122);
+	filter: drop-shadow(5px 5px 1px var(--shadow));
 }
 
 .row {
@@ -56,12 +57,27 @@
 }
 
 .colorLabel {
-	display: block;
-	height: 32px;
-	width: 32px;
+	position: relative;
+	display: flex;
+	height: 100%;
+	width: 148px;
+	text-align: center;
+	border-radius: 0.5em;
+	border: 3px solid gray;
+	cursor: pointer;
+}
+
+.colorText {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
 }
 
 .select {
-	border: 2px solid white;
+	outline: 2px solid var(--offBorder);
 	border-radius: 0.5em;
+	height: calc(100% - 3px);
+	padding: 0px 8px;
 }

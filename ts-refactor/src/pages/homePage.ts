@@ -2,6 +2,7 @@ import { make } from '../utils/helpers'
 import generic from '../styles/generics.module.css'
 import styles from '../styles/home.module.css'
 import { getCustomMonster, getRandomMonster } from '../api/monsterApi'
+import tinycolor from 'tinycolor2'
 
 interface IColors {
 	0: string
@@ -30,6 +31,18 @@ async function handleCustomClick(
 	colors = data.colors
 	console.log({ pattern, colors })
 	renderPixels()
+}
+
+function colorPickerChange(element: HTMLElement, colorValue: string) {
+	if (tinycolor(colorValue).isDark()) {
+		element.style.color = 'white'
+	} else {
+		element.style.color = 'black'
+	}
+	element.style.borderColor = tinycolor(colorValue).darken(
+		5
+	) as unknown as string
+	element.style.backgroundColor = colorValue
 }
 
 const pixelCanvas = make('div', { className: styles.canvas })
@@ -84,33 +97,40 @@ const homePage = () => {
 	generateBtns.append(randomBtn, customBtn)
 
 	const optionsInputs = make('div', { className: styles.spacedRow })
-
 	const labelPrimary = make('label', { className: styles.colorLabel })
+	const primaryText = make(
+		'span',
+		{ className: styles.colorText },
+		'Primary Color'
+	)
 	const primaryColor = make('input', {
 		type: 'color',
 		value: '#FFFFFF',
 		className: styles.colorInput,
 	}) as HTMLInputElement
 	labelPrimary.style.backgroundColor = primaryColor.value
-	labelPrimary.append(primaryColor)
+	labelPrimary.append(primaryColor, primaryText)
 
-	primaryColor.addEventListener(
-		'change',
-		() => (labelPrimary.style.backgroundColor = primaryColor.value)
+	primaryColor.addEventListener('change', () =>
+		colorPickerChange(labelPrimary, primaryColor.value)
 	)
 
 	const labelSecondary = make('label', { className: styles.colorLabel })
+	const secondayText = make(
+		'span',
+		{ className: styles.colorText },
+		'Secondary Color'
+	)
 	const secondaryColor = make('input', {
 		type: 'color',
 		value: '#FFFFFF',
 		className: styles.colorInput,
 	}) as HTMLInputElement
 	labelSecondary.style.backgroundColor = secondaryColor.value
-	labelSecondary.append(secondaryColor)
+	labelSecondary.append(secondayText, secondaryColor)
 
-	secondaryColor.addEventListener(
-		'change',
-		() => (labelSecondary.style.backgroundColor = secondaryColor.value)
+	secondaryColor.addEventListener('change', () =>
+		colorPickerChange(labelSecondary, secondaryColor.value)
 	)
 
 	const fillSelector = make('select', {
