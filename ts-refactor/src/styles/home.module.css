@@ -76,8 +76,8 @@
 }
 
 .select {
-	outline: 2px solid var(--offBorder);
+	outline: 3px solid var(--offBorder);
 	border-radius: 0.5em;
-	height: calc(100% - 3px);
+	height: calc(100% - 1px);
 	padding: 0px 8px;
 }

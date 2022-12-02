@@ -66,13 +66,14 @@ const homePage = () => {
 	const page = make('div', { className: generic.page + ' ' + styles.page })
 
 	const header = make('div', { className: styles.header })
-	const title = make('h1', { className: styles.title }, 'Kaijugochi')
-	const subTitle = make(
-		'p',
-		{ className: styles.para },
-		'Care for your very own Pixel Monster!'
+	header.append(
+		make('h1', { className: styles.title }, 'Kaijugochi'),
+		make(
+			'p',
+			{ className: styles.para },
+			'Care for your very own Pixel Monster!'
+		)
 	)
-	header.append(title, subTitle)
 
 	const generateBtns = make('div', { className: styles.spacedRow })
 	const randomBtn = make(
@@ -94,7 +95,13 @@ const homePage = () => {
 		)
 	)
 	randomBtn.addEventListener('click', () => handleRandomClick())
-	generateBtns.append(randomBtn, customBtn)
+	generateBtns.append(
+		make('btn', { className: generic.btn + ' ' + styles.wHalf }, 'Random', [
+			'click',
+			handleRandomClick as any,
+		]),
+		make('btn', { className: generic.btn + ' ' + styles.wHalf }, 'Custom')
+	)
 
 	const optionsInputs = make('div', { className: styles.spacedRow })
 	const labelPrimary = make('label', { className: styles.colorLabel })
